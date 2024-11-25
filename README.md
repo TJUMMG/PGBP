@@ -1,4 +1,4 @@
-<img width="692" alt="image" src="https://github.com/user-attachments/assets/3e416760-6da7-46eb-8fcc-b639ced2a3e2"><img width="692" alt="image" src="https://github.com/user-attachments/assets/8f08ab5a-5b12-4528-91dd-fdf0f506dc84"># Aggregate and Discriminate: Pseudo Clips-Guided Boundary Perception for Video Moment Retrieval
+# Aggregate and Discriminate: Pseudo Clips-Guided Boundary Perception for Video Moment Retrieval
 
 This is implementation for the paper "Aggregate and Discriminate: Pseudo Clips-Guided Boundary Perception for Video Moment Retrieval" (**TMM 2024**)
 
