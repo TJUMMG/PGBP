@@ -1,0 +1,96 @@
+WORKERS: 2
+
+SEED: 12345
+
+DATASET:
+  NAME: TACoS
+  NO_VAL: True
+  NORMALIZE: False
+  num_pairs: 15
+  num_clips: 500
+
+MODEL:
+  NAME: PGBP
+  CHECKPOINT: /media/Harddisk/zzb/work1/202404/results/Charades/EAMATDETR901/checkpoints/EAMAT1_26.t7
+  PARAMS:
+    aligned_len: True
+    sementic_fu: True
+    use_keyword: True
+    cost_class: 4.0
+    cost_span: 10.0
+    cost_giou: 1.0
+    eos_coef: 0.1
+    content_prior: "learned"
+    neg: True
+    top_k: 5
+    pos: True
+    top_k0: 3
+    fusion_attention: True
+    num_queries: 10
+    windowsize: 10
+    video_feature_dim: 4096
+    query_feature_dim: 300
+    max_len_query_tag: 8
+    dim: 512
+    query_position: False
+    video_position: True
+    query_attention_layers: 1
+    video_attention_layers: 1
+    query_attention: "MultiLSTMAttention"
+    video_attention: "MultiHeadAttention"
+    early_attention: "MultiHeadAttention"
+    detr_attention: "DETR_Decoder"
+    detr_layers: 5
+    early_attention_layers: 1
+    post_attention_layers: 3
+    post_attention: "MultiLSTMAttention" # choice of [MultiHeadAttention, DaMultiHeadAttention, MultiLSTMAttention, MultiConvAttention]
+    early_fusion_module: "CQFusion" # choice of [CQFusion, InteractorFusion, CosineFusion]
+    fusion_module: "multiscale_CQFusion" #multiscale_Fusion, CQFusion
+    beta: 2
+    MULTI_SCALE: True
+    MULTI_SCALE_LEN: 1
+    num_heads: 8
+    num_layers: 1
+    num_step: 3
+    bi_direction: True
+    kernels: [3, 5, 7]
+    drop_rate: 0.5
+    DEBUG: False
+
+    modulate_t_attn: True
+    bbox_embed_diff_each_layer: False
+    query_scale_type: 'cond_elewise' #'cond_elewise', 'cond_scalar', 'fix_elewise' 
+    query_dim: 2
+    return_intermediate: True
+    feedforward: 1024
+    dropout: 0.1
+    activation: "relu"
+    normalize_before: False
+    keep_query_pos: False
+    rm_self_attn_decoder: False    
+
+TRAIN:
+  BATCH_SIZE: 16
+  LR: 0.00005
+  WEIGHT_DECAY: 0.01
+  MAX_EPOCH: 50
+  MILE_STONE: [80]
+  GAMMA: 0.1
+  CONTINUE: False
+
+LOSS:
+  LOCALIZATION: 10.0
+  MATCH: 10.0
+  DISTANCE: 0.0
+  KL: 100.0
+  EARLY: 1.0
+  contrast: 1.0
+  cont: 1.0
+  hy_sigma: 1.0
+  contrast_weight: True
+  bce: 4.0
+  iou: 1.0
+
+TEST:
+  BATCH_SIZE: 32
+  EVAL_TRAIN: True
